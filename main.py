@@ -11,7 +11,7 @@ def get_short_url(url_to_shorten):
     url = "https://www.shorturl.at/shortener.php"
     r = requests.post(url, post_form)
     soup = BeautifulSoup(r.text, 'html.parser')
-    try:
+    try:  # if it is possible to make short url returns short url, else returns message
         short_url = soup.find('input', attrs={'id': 'shortenurl'})['value']
     except TypeError:
         return f'Perhaps user input is not URL'
